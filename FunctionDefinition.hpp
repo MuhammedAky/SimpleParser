@@ -6,23 +6,25 @@
 #include <vector>
 
 namespace simpleparser {
+
     using namespace std;
 
     class ParameterDefinition {
-        public:
-            string mName;
-            Type mType;
+    public:
+        string mName; // Empty string means no name given.
+        Type mType;
 
-            void debugPrint(size_t indent) const;
+        void debugPrint(size_t indent) const;
     };
 
     class FunctionDefinition {
-        public:
-            string mName;
-            vector<ParameterDefinition> mParameters;
-            vector<Statement> mStatements;
-            bool mReturnsSomething;
+    public:
+        string mName;
+        vector<ParameterDefinition> mParameters;
+        vector<Statement> mStatements;
+        bool mReturnsSomething;
 
-            void debugPrint() const;
+        void debugPrint() const;
     };
+
 }

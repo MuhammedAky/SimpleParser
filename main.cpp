@@ -5,21 +5,26 @@
 using namespace std;
 using namespace simpleparser;
 
-int main(){
-
+int main() {
     try {
         std::cout << "simpleparser 0.1\n" << endl;
 
-        FILE *fh = fopen("C:\\Users\\PC\\Desktop\\C\\simpleparser\\test.myc", "r");
-        if (!fh) { cerr << "Can't find file." << endl;}
+        FILE *fh = fopen("YOUR_PATH", "r");
+        if (!fh) { cerr << "Can't find file." << endl; }
         fseek(fh, 0, SEEK_END);
         size_t fileSize = ftell(fh);
         fseek(fh, 0, SEEK_SET);
         string fileContents(fileSize, ' ');
         fread(fileContents.data(), 1, fileSize, fh);
 
+        cout << fileContents << endl << endl;
+
         Tokenizer tokenizer;
         vector<Token> tokens = tokenizer.parse(fileContents);
+
+        for(Token currToken : tokens) {
+            currToken.debugPrint();
+        }
 
         Parser parser;
         parser.parse(tokens);
